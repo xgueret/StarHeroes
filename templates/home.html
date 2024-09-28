@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendrier Hebdomadaire</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Calendrier Hebdomadaire des Enfants</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Enfant</th>
+                {% for day in days %}
+                    <th>{{ day }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for child in children %}
+                <tr>
+                    <td>{{ child.name }}</td>
+                    {% for day in days %}
+                        <td>
+                            <!-- Placeholder pour les étoiles ou une note -->
+                            <span>⭐</span> <!-- à remplacer par une gestion dynamique -->
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
