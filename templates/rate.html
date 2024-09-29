@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attribuer des Étoiles</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Attribuer des Étoiles aux Enfants</h1>
+    <form action="{{ url_for('submit_rating') }}" method="POST">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Enfant</th>
+                    <th>Règle</th>
+                    <th>Jour</th>
+                    <th>Étoiles</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rule in rules %}
+                    {% for child in children %}
+                        {% for day in ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'] %}
+                            <tr>
+                                <td>{{ child.name }}</td>
+                                <td>{{ rule.rule }}</td>
+                                <td>{{ day }}</td>
+                                <td>
+                                    <input type="hidden" name="child_id" value="{{ child.id }}">
+                                    <input type="hidden" name="rule_id" value="{{ rule.id }}">
+                                    <input type="hidden" name="day" value="{{ day }}">
+                                    <select name="stars">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit">Soumettre</button>
+    </form>
+
+    <a href="{{ url_for('home') }}">Retour aux Résultats</a>
+</body>
+</html>

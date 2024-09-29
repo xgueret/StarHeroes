@@ -1,40 +1,65 @@
-/* styles.css */
-
+/* General styles for the body */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f8ff;
+    font-family: 'Arial', sans-serif;
+    background-image: url('./images/bg.png'); /* Background image */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background */
+    color: #fff; /* White text for contrast against the dark background */
     margin: 20px;
 }
 
+/* Style for the main title */
 h1 {
     text-align: center;
-    color: #2c3e50;
+    color: #fff; /* Gold color for a heroic vibe */
+
 }
 
+/* Style for the table */
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: collapse; /* Remove gaps between table cells */
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black for the table background */
+    border-radius: 10px; /* Rounded corners for the table */
 }
 
-th, td {
+/* Style for table headers */
+th {
+    background-color: #b22222; /* Firebrick color for headers */
+    color: #fff; /* White text for contrast */
+    padding: 10px;       
+}
+
+/* Style for table cells */
+td {
+    height: 70px; /* Increased height for a better look */
     padding: 10px;
     text-align: center;
+   
 }
 
-th {
-    background-color: #f4f4f4;
-    color: #2c3e50;
+/* Change background color on row hover */
+tbody tr:hover {
+    background-color: rgba(122, 105, 81, 0.3); /* Yellow highlight on hover for emphasis */
 }
 
-td {
-    height: 50px;
-}
-
+/* Style for the star symbols */
 span {
     font-size: 24px;
-    color: gold;
+    color: gold; /* Gold color for stars */
 }
 
-tr:hover {
-    background-color: #e0f7fa;
+/* Additional styling for the rules */
+.rule {
+    font-weight: bold; /* Bold text for rules */
+    color: #fff; /* White color for clarity */
+}
+
+/* Style for the footer or additional info */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #fff; /* White text for footer */
+    font-size: 14px; /* Smaller font size for footer */
 }
