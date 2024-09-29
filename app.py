@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 # Liste des enfants
 children = [
-    {"name": "chil1", "id": 1},
+    {"name": "child1", "id": 1},
     {"name": "child2", "id": 2},
     {"name": "child3", "id": 3}
 ]
