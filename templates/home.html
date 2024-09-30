@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendrier Hebdomadaire</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>La Quête Des Etoiles</h1>
-    <table border="1">
+    <h1>La Quête Des Étoiles</h1>
+    
+    <table>
         <thead>
             <tr>
                 <th>Règles</th>
@@ -20,17 +21,17 @@
         <tbody>
             {% for rule in rules %}
                 <tr>
-                    <td>{{ rule['rule'] }}</td>
+                    <td class="rule">{{ rule['rule'] }}</td>
                     {% for day in days %}
                         <td>
                             {% for child in children %}
                                 {{ child['name'] }}:
                                 {% set stars = ratings_dict.get((child['id'], rule['id'], day), 0) %}
-                                {% for star in range(2) %}
+                                {% for star in range(3) %} <!-- Change to 3 for the star rating -->
                                     {% if star < stars %}
-                                        ★
+                                        <span>★</span> <!-- Star -->
                                     {% else %}
-                                        ☆
+                                        <span>☆</span> <!-- Empty star -->
                                     {% endif %}
                                 {% endfor %}
                                 <br>
@@ -41,6 +42,7 @@
             {% endfor %}
         </tbody>
     </table>
-    <a href="/rate">Rate Children</a> <!-- Link to the rating page -->
+    
+    <a href="{{ url_for('rate') }}" style="color: #b22222; text-decoration: none; font-weight: bold;">Rate Children</a> <!-- Link to the rating page -->
 </body>
 </html>
