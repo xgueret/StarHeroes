@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attribuer des Étoiles</title>
+    <title>Académie des Héros</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Attribuer des Étoiles aux Enfants</h1>
+    <h1>Académie Des Héros</h1>
     
-    <form action="{{ url_for('rate') }}" method="GET">
+    <!-- Ajout de la classe "filter-form" pour le formulaire de sélection -->
+    <form action="{{ url_for('rate') }}" method="GET" class="filter-form">
         <label for="rule_id">Choisir une règle :</label>
         <select name="rule_id" id="rule_id" onchange="this.form.submit()">
             <option value="all" {% if not selected_rule %}selected{% endif %}>Toutes les règles</option>
@@ -27,8 +28,11 @@
         </select>
     </form>
 
-    <form action="{{ url_for('submit_rating') }}" method="POST">
-        <table border="1">
+    <a href="{{ url_for('home') }}" class="m-top-10">Retour aux Résultats</a>
+
+    <!-- Ajout de la classe "rating-table" pour le tableau -->
+    <form action="{{ url_for('submit_rating') }}" method="POST" class="rating-form">
+        <table class="rating-table" border="1">
             <thead>
                 <tr>
                     <th>Enfant</th>
@@ -37,7 +41,7 @@
                     <th>Étoiles</th>
                 </tr>
             </thead>
-            <tbody>               
+            <tbody>
                 {% for child in children %}
                     {% for rule in (rules if not selected_rule else [selected_rule]) %}
                         {% for day in (days_of_week if not selected_day else [selected_day]) %}
@@ -58,12 +62,12 @@
                             </tr>
                         {% endfor %}
                     {% endfor %}
-                {% endfor %}               
+                {% endfor %}
             </tbody>
         </table>
         <button type="submit">Soumettre</button>
     </form>
 
-    <a href="{{ url_for('home') }}">Retour aux Résultats</a>
+
 </body>
 </html>

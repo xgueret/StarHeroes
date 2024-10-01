@@ -4,12 +4,14 @@ and ratings. It allows users to display rules, assign star ratings to each child
 for different days, and store this information in an SQLite database.
 """
 
-import sqlite3
-from flask import Flask, render_template, request, redirect, url_for
-
+import sqlite3, secrets
+from flask import Flask, render_template, request, redirect, url_for, session
 app = Flask(__name__)
 
 DAYS_OF_WEEK = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"]
+
+secret_key = secrets.token_urlsafe(32)
+app.secret_key = secret_key
 
 def connect_db():
     """Connect to the SQLite database and set the row factory."""
@@ -22,6 +24,12 @@ def init_db():
     conn = connect_db()
     cursor = conn.cursor()
 
+    cursor.execute('''CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT UNIQUE,
+                password TEXT
+            )''')
+      
     cursor.execute('''CREATE TABLE IF NOT EXISTS children (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     name TEXT
@@ -40,10 +48,21 @@ def init_db():
                         stars INTEGER CHECK(stars >= 0 AND stars <= 2)
                     )''')
     
+     # Ajouter un utilisateur exemple si la table est vide
+    cursor.execute("SELECT COUNT(*) FROM users")
+    if cursor.fetchone()[0] == 0:
+        # Exemple d'utilisateur
+        example_username = "parent"
+        example_password = "password"  #hacher les mots de passe en production
+        cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", 
+                       (example_username, example_password))
+        
     cursor.execute("SELECT COUNT(*) FROM children")
     if cursor.fetchone()[0] == 0:
         children = [("Maya",), ("Ella",), ("Keziah",)]
         cursor.executemany("INSERT INTO children (name) VALUES (?)", children)
+        
+    
         
     conn.commit()
     conn.close()
@@ -74,6 +93,41 @@ def home():
     conn.close()
     return render_template("home.html", children=children, days=DAYS_OF_WEEK, rules=rules, ratings_dict=ratings_dict)
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    """Route pour gérer la connexion des parents."""
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+
+        conn = connect_db()
+        cursor = conn.cursor()
+        
+        cursor.execute("SELECT * FROM users WHERE username = ?", (username,))
+        user = cursor.fetchone()
+
+        # Vérifier si l'utilisateur existe et si le mot de passe correspond
+        if user and user["password"] == password:
+            session["user_id"] = user["id"]
+            return redirect(url_for("home"))  # Rediriger vers la page d'accueil après connexion
+        else:
+            return "Nom d'utilisateur ou mot de passe incorrect", 401  # Erreur de connexion
+
+    return render_template("login.html")
+
+@app.route("/logout")
+def logout():
+    """Route pour déconnecter l'utilisateur."""
+    session.pop("user_id", None)  # Supprimer l'utilisateur de la session
+    return redirect(url_for("home"))
+
+@app.before_request
+def require_login():
+    """Vérifier que l'utilisateur est connecté avant d'accéder à certaines pages."""
+    allowed_routes = ["home", "login", "static"]
+    if request.endpoint not in allowed_routes and "user_id" not in session:
+        return redirect(url_for("login"))
+    
 @app.route("/rate", methods=["GET"])
 def rate():
     """Afficher les enfants, règles et jours avec possibilité de filtrer ou de sélectionner tout"""
