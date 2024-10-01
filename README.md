@@ -6,9 +6,14 @@ StarHeroes is a fun and engaging web app designed for kids to track their achiev
 
 Join us on this exciting journey where every child becomes a StarHero, shining bright with every accomplishment! Let’s make learning and growing a joyful adventure! 🚀✨
 
+![](./img/img1.png)
 
+
+
+![](./img/img2.png)
 
 ## Tasks
+
 # Backlog Produit - StarHeroes
 
 ## Sprint 1 : Mise en place des fonctionnalités de base
