@@ -1,0 +1,304 @@
+/* General styles for the body */
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('./images/bg.png'); /* Background image */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background */
+    background-color: #f5f5f5; /* Couleur de fond claire */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Aligner le contenu en haut */
+    align-items: center; /* Centrer horizontalement */
+    height: 100vh; /* Occuper toute la hauteur de la fenêtre */
+}
+
+/* Style for the main title */
+h1 {
+    margin-top: 30px; /* Espacement en haut pour le titre */
+    color: #fff; /* White color for contrast */
+    font-size: 2.5rem; /* Larger font size for the title */
+    text-align: center; /* Center the text */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Slight shadow for better readability */
+}
+
+/* Style for the table */
+table {
+    width: 100%;
+    max-width: 1600px; /* Limite la largeur maximale de la table pour les grands écrans */
+    border-collapse: collapse; /* Remove gaps between table cells */
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black for the table background */
+    border-radius: 10px; /* Rounded corners for the table */
+    overflow: hidden; /* Ensure rounded corners apply even to table content */
+}
+
+/* Style for table headers */
+th {
+    background-color: #b22222; /* Firebrick color for headers */
+    color: #fff; /* White text for contrast */
+    padding: 15px;       
+    font-weight: bold;
+    text-transform: uppercase; /* Uppercase text for header for better readability */
+}
+
+/* Style for table cells */
+td {
+    height: 70px; /* Increased height for a better look */
+    padding: 10px;
+    text-align: center;
+    color: #fff; /* White color for the content */
+}
+
+/* Change background color on row hover */
+tbody tr:hover {
+    background-color: rgba(122, 105, 81, 0.3); /* Yellow highlight on hover for emphasis */
+}
+
+/* Style for the star symbols */
+span {
+    font-size: 24px;
+    color: gold; /* Gold color for stars */
+}
+
+/* Additional styling for the rules */
+.rule {
+    font-weight: bold; /* Bold text for rules */
+    color: #fff; /* White color for clarity */
+}
+
+/* Style for the footer or additional info */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #fff; /* White text for footer */
+    font-size: 14px; /* Smaller font size for footer */
+}
+
+/* Styles spécifiques à la page de connexion */
+.login h1 {
+    text-align: center;
+    color: #b22222; /* Couleur du titre */
+    font-size: 2rem; /* Taille du titre pour la page de login */
+    margin-bottom: 20px; /* Espacement sous le titre */
+}
+
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    table, th, td {
+        font-size: 0.9rem; /* Réduire la taille de police pour les petits écrans */
+    }
+
+    form {
+        width: 90%; /* Rendre le formulaire plus flexible sur petits écrans */
+        margin-top: 20px;
+    }
+
+    h1 {
+        font-size: 2rem; /* Adapter la taille du titre pour petits écrans */
+    }
+}
+
+/* Superhero Button Style with red tones */
+.superhero-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    margin-top: 2em;
+    background-color: #b22222; /* Firebrick color matching the table headers */
+    color: #fff; /* White text for contrast */
+    text-transform: uppercase; /* Powerful, uppercase text */
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 50px; /* Rounded shape for a dynamic look */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Soft shadow for depth */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    text-decoration: none;
+    text-align: center;
+    border: 2px solid #8b1a1a; /* Darker border for contrast */
+}
+
+/* Hover effect to simulate a superhero action */
+.superhero-btn:hover {
+    background-color: #a52a2a; /* Darker red on hover for intensity */
+    box-shadow: 0 8px 20px rgba(139, 26, 26, 0.6), 0 0 10px rgba(255, 99, 71, 0.8); /* Glowing red energy */
+    transform: translateY(-5px) scale(1.05); /* Slight lift for dynamic effect */
+}
+
+/* Active state for button press */
+.superhero-btn:active {
+    transform: translateY(2px); /* Pressed down effect */
+    background-color: #8b1a1a; /* Even darker red on click */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2); /* Reduced shadow for a pressed effect */
+}
+
+
+/* Style pour le formulaire de filtres */
+.filter-form {
+    
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espacement entre les éléments */
+    margin-bottom: 20px;
+    width: 62%; /* Largeur étendue du formulaire de filtre */
+    margin: 10px auto; /* Centrer horizontalement */
+    padding: 20px; /* Espacement interne */
+    background-color: rgba(255, 255, 255, 0.8); /* Arrière-plan semi-transparent */
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3); /* Ombre pour donner de la profondeur */
+}
+
+/* Style pour les éléments du formulaire */
+.filter-form label {
+    color: #b22222; /* Couleur rouge vif pour les labels */
+    font-weight: bold; /* Mettre en avant les labels */
+    font-size: 1.2em; /* Taille de police plus grande */
+}
+
+.filter-form select {
+    padding-left: 10px; /* Espacement interne */
+    padding-right: 10px; 
+    border-radius: 5px; /* Coins arrondis */
+    border: 2px solid #b22222; /* Bordure rouge */
+    background-color: #f9f9f9; /* Fond clair pour les sélecteurs */
+    font-size: 1em; /* Taille de police normale */
+    transition: border 0.3s; /* Transition douce pour l'état de focus */
+}
+
+/* Effet au survol sur les sélecteurs */
+.filter-form select:hover, 
+.filter-form select:focus {
+    border-color: #ff4500; /* Changement de couleur au survol */
+    outline: none; /* Enlever le contour par défaut */
+}
+
+/* Style pour les boutons */
+.filter-form button {
+    background-color: #b22222; /* Couleur rouge vif pour le bouton */
+    color: white; /* Texte blanc pour le contraste */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    padding: 10px 20px; /* Espacement interne */
+    font-size: 1.1em; /* Taille de police légèrement augmentée */
+    cursor: pointer; /* Curseur pointer pour le bouton */
+    transition: background-color 0.3s; /* Transition douce pour l'effet de survol */
+}
+
+/* Effet au survol sur le bouton */
+.filter-form button:hover {
+    background-color: #ff4500; /* Couleur plus claire au survol */
+}
+
+/* Style pour le formulaire de notation */
+.rating-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%; /* Largeur étendue du formulaire de notation */
+ 
+}
+
+/* Style pour le tableau de notation */
+.rating-table {
+    width: 80%; /* Augmentation de la largeur du tableau à 90% */
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+}
+
+.rating-table th, .rating-table td {
+    padding: 15px; /* Augmentation du padding pour plus d'espace dans les cellules */
+    text-align: center;
+    color: #fff;
+    border: 1px solid #ddd; /* Ajouter une légère bordure aux cellules */
+}
+
+.rating-table th {
+    background-color: #b22222;
+    color: #fff;
+}
+
+.rating-table td {
+    height: 70px;
+}
+
+.rating-table select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Effet hover pour les lignes du tableau */
+.rating-table tbody tr:hover {
+    background-color: rgba(122, 105, 81, 0.3);
+}
+
+/* Style pour le bouton Soumettre */
+.rating-form button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #b22222;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.rating-form button:hover {
+    background-color: #a52a2a;
+}
+
+
+
+/* Style for the login form */
+.login-form {
+    display: flex;
+    flex-direction: column; /* Aligner les éléments du formulaire en colonne */
+    width: 100%;
+    max-width: 350px; /* Largeur maximale du formulaire */
+    padding: 20px;
+    background-color: white; /* Fond blanc pour le formulaire */
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Plus d'ombre pour un effet de profondeur */
+    margin-top: 50px; /* Ajouter un espacement au-dessus du formulaire */
+    margin-bottom: 15px;
+}
+
+.login-form label {
+    margin-top: 10px;
+    color: #333;
+    font-size: 1rem; /* Taille de police légèrement plus grande pour la lisibilité */
+}
+
+.login-form input[type="text"], input[type="password"] {
+    padding: 12px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: border-color 0.3s ease; /* Transition pour un effet plus fluide lors du focus */
+}
+
+.login-form input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #b22222; /* Couleur de bordure rouge en focus */
+    outline: none; /* Supprimer le contour bleu par défaut */
+}
+
+.login-form button {
+    margin-top: 15px;
+    padding: 12px;
+    background-color: #b22222;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease; /* Transition pour un changement de couleur plus fluide */
+}
+
+.login-form button:hover {
+    background-color: #a52a2a;
+}
