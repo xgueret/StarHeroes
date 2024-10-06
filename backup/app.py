@@ -3,14 +3,18 @@ This module implements a Flask web application for managing children's rules
 and ratings. It allows users to display rules, assign star ratings to each child 
 for different days, and store this information in an SQLite database.
 """
+from flask import Flask
+from blueprints.auth import auth_bp
+from blueprints.rules import rules_bp
+from models import db
+from config import DevelopmentConfig
 
-import sqlite3, secrets
-from flask import Flask, render_template, request, redirect, url_for, session
 app = Flask(__name__)
+app.config.from_object(DevelopmentConfig)
+
 
 DAYS_OF_WEEK = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"]
 
-secret_key = secrets.token_urlsafe(32)
 app.secret_key = secret_key
 
 def connect_db():

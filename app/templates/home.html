@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendrier Hebdomadaire - La Quête Des Étoiles</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>La Quête Des Étoiles</h1>
+    </header>
+
+    <section class="calendar">
+        <table>
+            <thead>
+                <tr>
+                    <th>Règles</th>
+                    {% for day in days %}
+                        <th>{{ day }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for rule in rules %}
+                    <tr>
+                        <td class="rule">{{ rule['rule'] }}</td>
+                        {% for day in days %}
+                            <td>
+                                {% for child in children %}
+                                    <div class="rating-entry">
+                                        <span class="child-name">{{ child['name'] }}:</span>
+                                        {% set stars = ratings_dict.get((child['id'], rule['id'], day), 0) %}
+                                        <span class="stars">
+                                            {% for star in range(2) %}
+                                                {% if star < stars %}
+                                                    <span class="star filled">★</span>
+                                                {% else %}
+                                                    <span class="star empty">☆</span>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </span>
+                                    </div>
+                                {% endfor %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+    
+    <footer>
+        <a href="{{ url_for('rate') }}" class="superhero-btn">Académie Des Héros</a>
+    </footer>
+
+</body>
+</html>
