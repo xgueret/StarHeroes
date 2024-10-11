@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription - Hero Academy</title>
+    <title>Inscription - Instructeur/trice Hero Academy</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
@@ -12,13 +12,27 @@
             <h1>Inscription</h1>
             <form action="{{ url_for('auth_bp.register') }}" method="POST">
                 <div class="form-group">
-                    <label for="username">Nom d'utilisateur</label>
+                    <label for="username">Nom de l'Instructeur</label>
                     <input type="text" id="username" name="username" placeholder="Votre nom d'utilisateur" required>
                 </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Votre email" required>
+                </div>
+
                 <div class="form-group">
                     <label for="password">Mot de passe</label>
                     <input type="password" id="password" name="password" placeholder="Votre mot de passe" required>
                 </div>
+
+                <div class="form-group">
+                    <label for="role">Demande de rôle</label>
+                    <select name="role">
+                        <option value="parent">Parent</option>
+                    </select>
+                </div>
+
 
                 <button type="submit" class="register-btn">S'inscrire</button>
             </form>

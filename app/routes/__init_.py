@@ -1,6 +1,8 @@
 """ app/routes/__init__.py"""
-from app.routes.auth_bp import auth_db
-
+from app.routes.main import main_bp
+from app.routes.admin import admin_bp
+from app.routes.auth import auth_bp
+from app.routes.parent import parent_bp
 
 # Liste des blueprints disponibles dans l'application
-__all__ = ['auth_db']
+__all__ = ['main_bp', 'admin_bp', 'auth_bp', 'parent_bp']
