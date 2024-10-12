@@ -1,21 +1,16 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendrier Hebdomadaire - La Quête Des Étoiles</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <header>
-        <h1>La Quête Des Étoiles</h1>
-    </header>
+{% extends "base.html" %}
 
+{% block title %}
+    Star Heroes
+{% endblock %}
+
+{% block content %}
+    <h1>La Quête Des Étoiles</h1>
     <section class="calendar">
         <table>
             <thead>
                 <tr>
-                    <th>Règles</th>
+                    <th>Missions</th>
                     {% for day in days %}
                         <th>{{ day }}</th>
                     {% endfor %}
@@ -45,14 +40,19 @@
                             </td>
                         {% endfor %}
                     </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">
+                            <p>Nos héros n'ont aucune mission.</P>
+                            {% if current_user.is_authenticated %}
+                                {% if current_user.has_role('parent') %}
+                                    <p><!-- a href="{{ url_for('auth.register') }}"-->Définissez des missions !<!--/a --></p>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
     </section>
-    
-    <footer>
-        <a href="{{ url_for('parent.rate') }}" class="superhero-btn">Académie Des Héros</a>
-    </footer>
-
-</body>
-</html>
+{% endblock %}

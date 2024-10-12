@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Rating - Académie Des Héros
+{% endblock %}
+
+{% block content %}
+<h1>Liste des Héros</h1>
+
+<form action="{{ url_for('parent.add_child') }}" method="POST" class="filter-form">
+    <input type="text" name="name" placeholder="Nom du héro ou heroïne" required>
+    <button type="submit">Ajouter</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Héro | Héroïne</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for child in children %}
+        <tr>
+            <td>{{ child.name }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="1">Aucun Héro</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    
+{% endblock %}

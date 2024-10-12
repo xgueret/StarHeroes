@@ -1,46 +1,69 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription - Instructeur/trice Hero Academy</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <div class="register-container">
-        <div class="form-box">
-            <h1>Inscription</h1>
-            <form action="{{ url_for('auth_bp.register') }}" method="POST">
-                <div class="form-group">
-                    <label for="username">Nom de l'Instructeur</label>
-                    <input type="text" id="username" name="username" placeholder="Votre nom d'utilisateur" required>
-                </div>
+{% extends "base.html" %}
 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Votre email" required>
-                </div>
+{% block title %}
+    Connexion
+{% endblock %}
 
-                <div class="form-group">
-                    <label for="password">Mot de passe</label>
-                    <input type="password" id="password" name="password" placeholder="Votre mot de passe" required>
-                </div>
+{% block content %}
+<h1>Devenez Instructeur !</h1>
+<form id="register-form" action="{{ url_for('auth.register') }}" method="POST" class="login-form">
 
-                <div class="form-group">
-                    <label for="role">Demande de rôle</label>
-                    <select name="role">
-                        <option value="parent">Parent</option>
-                    </select>
-                </div>
+    <label for="username">Nom</label>
+    <input type="text" id="username" name="username" placeholder="Votre nom d'utilisateur" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="Votre email" required>
 
 
-                <button type="submit" class="register-btn">S'inscrire</button>
-            </form>
+    <label for="password">Mot de passe</label>
+    <input type="password" id="password" name="password" placeholder="Votre mot de passe" required>
 
-            <div class="login-link">
-                <p>Déjà un compte ? <a href="{{ url_for('auth_bp.login') }}">Connectez-vous ici</a></p>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+    <label for="confirm-password">Confirmez votre Mot de passe</label>
+    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmez Votre mot de passe" required>
+
+    <label for="role">Demande de rôle</label>
+    <select name="role">
+        <option value="parent">Parent</option>
+    </select>
+
+    <!-- Message d'erreur personnalisé -->
+    <p id="error-message" style="color: red; display: none;"></p>
+    
+    <button type="submit" class="register-btn">S'inscrire</button>
+
+    <p>Déjà un compte ? <a href="{{ url_for('auth.login') }}">Connectez-vous ici</a></p>
+    <p><a href="{{ url_for('main.home') }}">Retour à l'accueil</a></p>
+    
+</form>
+
+<div class="login-link">
+
+</div>
+
+<script>
+    document.getElementById('register-form').addEventListener('submit', function(event) {
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirm-password').value;
+        var errorMessage = document.getElementById('error-message');
+
+        // Vérifier si le mot de passe contient au moins une majuscule, un chiffre, un caractère spécial et a une longueur d'au moins 8 caractères
+        var passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+        if (password !== confirmPassword) {
+            // Les mots de passe ne correspondent pas
+            event.preventDefault();
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = "Les mots de passe ne correspondent pas, veuillez vérifier et réessayer.";
+        } else if (!passwordPattern.test(password)) {
+            // Le mot de passe ne respecte pas les critères de sécurité
+            event.preventDefault();
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = "Le mot de passe doit contenir au moins une majuscule, un chiffre, un caractère spécial et au moins 8 caractères.";
+        } else {
+            // Si tout est correct, on cache le message d'erreur
+            errorMessage.style.display = 'none';
+        }
+    });
+</script>
+{% endblock %}

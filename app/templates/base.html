@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}StarHeroes{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="{{ url_for('main.home') }}">Star Heroes</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('parent.rating') }}">Evaluer les missions</a></li>
+                    <li><a href="{{ url_for('parent.list_children') }}">Héros</a></li>
+                                                          
+                {% endif %}
+            </ul>
+            <div class="user-icon">
+                <!-- Hamburger icon -->
+                <div class="hamburger">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <div class="dropdown-menu">
+                    {% if current_user.is_authenticated %}
+                        {% if current_user.has_role('admin') %}
+                            <a href="{{ url_for('admin.validate_users') }}">Valider les utilisateurs</a>
+                        {% endif %}
+                        <a href="{{ url_for('auth.logout') }}">Déconnexion</a>
+                    {% else %}
+                        <a href="{{ url_for('auth.login') }}" class="login-btn">Se connecter</a>
+                        <a href="{{ url_for('auth.register') }}" class="login-btn">Devenir instructeur</a>
+                    {% endif %}
+                </div>
+            </div>
+            
+        </nav>
+    </header>
+    <!-- Main content of the page -->
+    <div class="container">
+        <!-- Messages flash -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash-message {{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}
+        <!-- Page content here -->
+        {% endblock %}
+    </div>
+</body>
+</html>

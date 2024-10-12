@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validation des Instructeurs/trices</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}
+    Administration - Validation des Instructeurs/trices
+{% endblock %}
+
+{% block content %}
     <h1>Validation des Instructeurs/trices</h1>
     
-    <h2>Parents en attente de validation</h2>
-
     <table>
         <thead>
             <tr>
-                <th>Nom du parent</th>
+                <th>Nom de l'instructeur/trice</th>
                 <th>Email</th>
                 <th>Statut</th>
                 <th>Action</th>
@@ -27,11 +23,11 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.status }}</td>
                 <td>
-                    <form action="{{ url_for('admin_bp.validate_users') }}" method="POST" style="display:inline;">
+                    <form action="{{ url_for('admin.validate_users') }}" method="POST" style="display:inline;">
                         <input type="hidden" name="user_id" value="{{ user.id }}">
                         <button type="submit" name="action" value="validate" class="btn btn-success">Valider</button>
                     </form>
-                    <form action="{{ url_for('admin_bp.validate_users') }}" method="POST" style="display:inline;">
+                    <form action="{{ url_for('admin.validate_users') }}" method="POST" style="display:inline;">
                         <input type="hidden" name="user_id" value="{{ user.id }}">
                         <button type="submit" name="action" value="reject" class="btn btn-danger">Rejeter</button>
                     </form>
@@ -45,7 +41,4 @@
         </tbody>
     </table>
 
-    <a href="{{ url_for('main_bp.index') }}" class="btn btn-primary">Retour à l'accueil</a>
-
-</body>
-</html>
+{% endblock %}
