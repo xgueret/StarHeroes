@@ -22,3 +22,30 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+// Gestion du popup d'ajout
+document.getElementById('add-rule-btn').addEventListener('click', function() {
+    document.getElementById('add-rule-modal').style.display = 'block';
+});
+
+// Gestion du popup d'édition
+document.querySelectorAll('.edit-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        var ruleId = btn.getAttribute('data-id');
+        var ruleName = btn.getAttribute('data-name');
+        var ruleDescription = btn.getAttribute('data-description');
+        document.getElementById('edit-rule-name').value = ruleName;
+        document.getElementById('edit-rule-description').value = ruleDescription;
+        document.getElementById('edit-rule-form').action = '/parent/rules/edit/' + ruleId;
+        document.getElementById('edit-rule-modal').style.display = 'block';
+    });
+});
+
+// Fermer les popups
+document.querySelectorAll('.close').forEach(function(closeBtn) {
+    closeBtn.addEventListener('click', function() {
+        document.querySelectorAll('.modal').forEach(function(modal) {
+            modal.style.display = 'none';
+        });
+    });
+});

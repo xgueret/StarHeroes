@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<h1>Devenez Instructeur !</h1>
+<h1>Devenez Superparents !</h1>
 <form id="register-form" action="{{ url_for('auth.register') }}" method="POST" class="login-form">
 
     <label for="username">Nom</label>
@@ -36,10 +36,6 @@
     <p><a href="{{ url_for('main.home') }}">Retour à l'accueil</a></p>
     
 </form>
-
-<div class="login-link">
-
-</div>
 
 <script>
     document.getElementById('register-form').addEventListener('submit', function(event) {

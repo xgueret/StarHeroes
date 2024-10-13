@@ -8,7 +8,7 @@
 <h1 class="login">Connectez vous !</h1>
 
 <form action="{{ url_for('auth.login') }}" method="POST" class="login-form">
-    <label for="username">Nom d'utilisateur :</label>
+    <label for="username">Nom du Superparents :</label>
     <input type="text" name="username" required>
     
     <label for="password">Mot de passe :</label>
@@ -16,6 +16,6 @@
 
     <button type="submit">Se connecter</button>
     <p><a href="{{ url_for('main.home') }}">Retour à l'accueil</a></p>
-    <p>Vous souhaitez devenir instructeur ? <a href="{{ url_for('auth.register') }}">Inscrivez-vous ici</a></p>
+    <p>Vous souhaitez devenir Superparents ? <a href="{{ url_for('auth.register') }}">Inscrivez-vous ici</a></p>
 </form>
 {% endblock %}

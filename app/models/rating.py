@@ -16,8 +16,8 @@ class Rating(db.Model):
     )
 
     # Relations
-    child = db.relationship('Child', backref='ratings')
-    rule = db.relationship('Rule', backref='ratings')
+    child = db.relationship('Child', back_populates='ratings')
+    rule = db.relationship('Rule', back_populates='ratings')
 
     def __repr__(self):
         return f"<Rating(id={self.id}, child_id={self.child_id}, rule_id={self.rule_id}, day={self.day}, stars={self.stars})>"

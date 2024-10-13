@@ -12,8 +12,9 @@
             <ul class="nav-menu">
                 <li><a href="{{ url_for('main.home') }}">Star Heroes</a></li>
                 {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('parent.manage_rules') }}">Gérer les missions</a></li>
                     <li><a href="{{ url_for('parent.rating') }}">Evaluer les missions</a></li>
-                    <li><a href="{{ url_for('parent.list_children') }}">Héros</a></li>
+                    <li><a href="{{ url_for('parent.list_children') }}">Héros/Héroïnes</a></li>
                                                           
                 {% endif %}
             </ul>
@@ -23,12 +24,12 @@
                     <ul>
                     {% if current_user.is_authenticated %}
                         {% if current_user.has_role('admin') %}
-                            <li><a href="{{ url_for('admin.validate_users') }}">Valider les utilisateurs</a></li>
+                            <li><a href="{{ url_for('admin.validate_users') }}">Valider les Superparents</a></li>
                         {% endif %}
                         <li><a href="{{ url_for('auth.logout') }}">Déconnexion</a></li>
                     {% else %}
                         <li><a href="{{ url_for('auth.login') }}" class="login-btn">Se connecter</a></li>
-                        <li><a href="{{ url_for('auth.register') }}" class="login-btn">Devenir instructeur</a></li>
+                        <li><a href="{{ url_for('auth.register') }}" class="login-btn">Devenir Superparents</a></li>
                     {% endif %}
                     </ul>
                 </div>

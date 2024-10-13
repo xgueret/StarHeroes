@@ -9,5 +9,7 @@ class Rule(db.Model):
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(255), nullable=False)
 
+    ratings = db.relationship('Rating', back_populates='rule', cascade='all, delete-orphan')
+
     def __repr__(self):
         return f"<Rule(id={self.id}, name={self.name}, description={self.description})>"
