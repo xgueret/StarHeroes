@@ -17,23 +17,20 @@
                                                           
                 {% endif %}
             </ul>
-            <div class="user-icon">
-                <!-- Hamburger icon -->
-                <div class="hamburger">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </div>
-                <div class="dropdown-menu">
+            <div class="menu-container">
+                <button id="menu-btn"> ⋮ </button>
+                <div id="context-menu">
+                    <ul>
                     {% if current_user.is_authenticated %}
                         {% if current_user.has_role('admin') %}
-                            <a href="{{ url_for('admin.validate_users') }}">Valider les utilisateurs</a>
+                            <li><a href="{{ url_for('admin.validate_users') }}">Valider les utilisateurs</a></li>
                         {% endif %}
-                        <a href="{{ url_for('auth.logout') }}">Déconnexion</a>
+                        <li><a href="{{ url_for('auth.logout') }}">Déconnexion</a></li>
                     {% else %}
-                        <a href="{{ url_for('auth.login') }}" class="login-btn">Se connecter</a>
-                        <a href="{{ url_for('auth.register') }}" class="login-btn">Devenir instructeur</a>
+                        <li><a href="{{ url_for('auth.login') }}" class="login-btn">Se connecter</a></li>
+                        <li><a href="{{ url_for('auth.register') }}" class="login-btn">Devenir instructeur</a></li>
                     {% endif %}
+                    </ul>
                 </div>
             </div>
             
@@ -58,5 +55,6 @@
         <!-- Page content here -->
         {% endblock %}
     </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
