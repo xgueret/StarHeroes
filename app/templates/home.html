@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Star Heroes
+{% endblock %}
+
+{% block content %}
+    <h1>La Quête Des Étoiles</h1>
+    <h2>Vers l'infini et au delà !</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Mission</th>
+                {% for day in days %}
+                    <th>{{ day }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% if not children %}
+                <td colspan="6">
+                    <p>Il n'y a aucun héros ou héroïne d'enregistré.</P>
+                    {% if current_user.is_authenticated %}
+                        {% if current_user.has_role('parent') %}
+                            <p><a href="{{ url_for('parent.list_children') }}">Enregistrer de nouveaux héros ou héroïne !</a></p>
+                        {% endif %}
+                    {% endif %}        
+            {% else %}   
+                {% for rule in rules %}
+                    <tr>
+                        <td class="rule">{{ rule['name'] }}</td>
+                            {% for day in days %}
+                                <td>
+                                    {% for child in children %}
+                                        <div class="rating-entry">
+                                            <span class="child-name">{{ child['name'] }}:</span>
+                                            {% set stars = ratings_dict.get((child['id'], rule['id'], day), 0) %}
+                                            <span class="stars">
+                                                {% for star in range(2) %}
+                                                    {% if star < stars %}
+                                                        <span class="star filled">★</span>
+                                                    {% else %}
+                                                        <span class="star empty">☆</span>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </span>
+                                        </div>
+                                    {% endfor %}
+                                </td>
+                            {% endfor %}                    
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">
+                            <p>Nos héros n'ont aucune mission.</P>
+                            {% if current_user.is_authenticated %}
+                                {% if current_user.has_role('parent') %}
+                                    <p><!-- a href="{{ url_for('auth.register') }}"-->Définissez des missions !<!--/a --></p>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

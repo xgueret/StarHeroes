@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Rating - Académie Des Héros
+{% endblock %}
+
+{% block content %}
+<h1>Liste des Héros</h1>
+<h2>Toutes les étoiles comptes !</h2>
+
+<form action="{{ url_for('parent.add_child') }}" method="POST" class="filter-form">
+    <input type="text" name="name" placeholder="Nom du héros ou heroïne" required>
+    <button type="submit">Ajouter</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Héros | Héroïne</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for child in children %}
+        <tr>
+            <td>{{ child.name }}</td>
+            <td>
+                <form action="{{ url_for('parent.delete_child', child_id=child.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="delete-btn">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="2">
+                <p>Il n'y a aucun héros ou héroïne d'enregistré !</p>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    
+{% endblock %}

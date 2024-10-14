@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Missions
+{% endblock %}
+
+{% block content %}
+<h1>Gérer les missions de nos héros et héroïnes</h1>
+<h2>Les petites actions font les grands héros !</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Mission</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for rule in rules %}
+        <tr>
+            <td>{{ rule.name }}</td>
+            <td>{{ rule.description }}</td>
+            <td>
+                <button class="edit-btn" data-id="{{ rule.id }}" data-name="{{ rule.name }}" data-description="{{ rule.description }}">Éditer</button>           
+                <form action="{{ url_for('parent.delete_rule', rule_id=rule.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="delete-btn">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="3">
+                <p>Nos héros n'ont aucune mission.</P>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<!-- Pagination -->
+<div class="pagination">
+    {% for p in range(1, (total // per_page) + 1 + (1 if total % per_page > 0 else 0)) %}
+        <a href="{{ url_for('parent.manage_rules', page=p) }}" class="{% if page == p %}active{% endif %}">{{ p }}</a>
+    {% endfor %}
+</div>
+
+ <!-- Bouton Ajouter -->
+ <button id="add-rule-btn" class="superhero-btn">Ajouter une nouvelle mission</button>
+
+ <!-- Modal pour ajouter une règle -->
+ <div id="add-rule-modal" class="modal">
+    <div id="add-rule-modal-content" class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Ajouter une nouvelle mission</h2>
+        <form id="add-rule-form" action="{{ url_for('parent.add_rule') }}" method="POST">
+            <input type="text" name="new_rule" placeholder="Nom de la règle" required>
+            <textarea name="rule_description" placeholder="Description de la règle" required></textarea>
+            <button type="submit" class="superhero-btn">Ajouter</button>
+        </form>
+    </div>
+</div>
+
+<!-- Modal pour éditer une règle -->
+<div id="edit-rule-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Éditer la mission</h2>
+        <form id="edit-rule-form" action="" method="POST">
+            <input type="text" name="rule_name" id="edit-rule-name" required>
+            <textarea name="rule_description" id="edit-rule-description" required></textarea>
+            <button type="submit" class="superhero-btn">Mettre à jour</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
