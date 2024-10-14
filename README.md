@@ -4,44 +4,123 @@ Welcome to **StarHeroes**! 🌟
 
 StarHeroes is a fun and engaging web app designed for kids to track their achievements and earn shining stars! Each week, children can showcase their awesome behavior and complete tasks, collecting stars along the way. Parents can easily customize rules, give feedback, and celebrate their little heroes' progress with colorful charts and reports.
 
-Join us on this exciting journey where every child becomes a StarHero, shining bright with every accomplishment! Let’s make learning and growing a joyful adventure! 🚀✨
+Join us on this exciting journey where every child becomes a StarHeroes, shining bright with every accomplishment! Let’s make learning and growing a joyful adventure! 🚀✨
 
-![](./img/img1.png)
+![](./img/ce1.png)
 
+![](./img/ce2.png)
 
+![](./img/ce3.png)
 
-![](./img/img2.png)
+![](./img/ce4.png)
 
-## Tasks
+![](./img/ce5.png)
 
-# Backlog Produit - StarHeroes
+![](./img/ce6.png)
 
-## Sprint 1 : Mise en place des fonctionnalités de base
-
-| **ID** | **Tâche**                                    | **Description**                                              | **Estimation (jours)** | **Definition of Done (DoD)**                                 | **Statut** |
-| ------ | -------------------------------------------- | ------------------------------------------------------------ | ---------------------- | ------------------------------------------------------------ | ---------- |
-| 1      | Interface utilisateur intuitive (Calendrier) | Implémenter le calendrier hebdomadaire pour suivre le comportement des enfants. | 2 jours                | - L'interface affiche un calendrier avec les jours de la semaine.<br> - Chaque enfant a une colonne dédiée.<br> - Le calendrier est fonctionnel et responsive. | Done       |
-| 2      | Système de notation par étoiles              | Permettre de noter les enfants avec 5 étoiles pour chaque jour de la semaine. | 2 jours                | - Le système de notation par étoiles fonctionne pour chaque jour de la semaine.<br> - Les notes sont sauvegardées dans la base de données.<br> - Le formulaire de notation est accessible uniquement pour les parents.<br> | Done       |
-| 5      | Authentification                             | Implémenter un système d'authentification simple pour les parents. | 1 jour                 | - Les parents peuvent se connecter à l’application via un login et mot de passe.<br> - Les enfants n’ont pas accès aux fonctions d’évaluation.<br> - Le code est sécurisé, testé et validé. | Done       |
-| 6      | Base de données (SQLite)                     | Mise en place d'une base de données SQLite pour stocker les informations. | 1 jour                 | - La base de données SQLite est connectée à l'application.<br> - Les informations des enfants (noms, scores) sont stockées et récupérables.<br> - Les tests de base de données sont passés avec succès. | Done       |
+![](./img/ce7.png)
 
 
 
-## Sprint 2 : Ajout des fonctionnalités avancées
+## How to Launch the Application
 
-| **ID** | **Tâche**                                             | **Description**                                                                 | **Estimation (jours)** | **Definition of Done (DoD)**                                                                                                                                                                  | **Statut**          |
-|--------|--------------------------------------------------------|---------------------------------------------------------------------------------|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------|
-| 3      | Gestion des règles                                      | Permettre d'ajouter, modifier et supprimer des règles pour évaluer les enfants.  | 2 jours                | - Les parents peuvent ajouter, modifier et supprimer des règles dans l’application.<br> - Les règles sont sauvegardées dans la base de données et appliquées chaque semaine.<br> - L’interface utilisateur est intuitive et facile à utiliser.<br> - Le code est testé et fonctionnel. | À faire             |
-| 4      | Visualisation des résultats                            | Implémenter une représentation graphique des performances (barres, camembert).   | 2 jours                | - Les performances des enfants sont représentées sous forme de graphiques (barres, camembert, etc.).<br> - Les graphiques se mettent à jour automatiquement en fonction des notes.<br> - L’interface est responsive et fonctionne sur tous les appareils.<br> - Les tests visuels et fonctionnels sont passés. | À faire             |
-| 8      | Intégration d'OpenAPI et documentation                 | Documenter les routes d'API avec Flask-RESTPlus et générer Swagger UI.           | 1 jour                 | - Les routes de l'API sont documentées dans Swagger UI.<br> - La documentation OpenAPI est générée automatiquement via Flask-RESTPlus.<br> - L'API est testée via Swagger UI et fonctionne comme prévu.<br> - Les tests unitaires pour l'API sont réalisés. | À faire             |
-| 7      | Docker & Docker Compose                                | Conteneuriser l'application avec Docker et Docker Compose.                       | 2 jours                | - L'application fonctionne correctement dans un conteneur Docker.<br> - Docker Compose permet de démarrer l’application et la base de données en une seule commande.<br> - Les tests d'intégration sont effectués avec succès dans les conteneurs.<br> - Le fichier `docker-compose.yml` est correctement configuré et versionné. | À faire             |
+To successfully run this application, you need to follow these steps:
+Prerequisites
+
+Ensure you have the following installed on your machine:
+
+* Docker
+* Docker Compose
+
+### Step 1: Create a `.env` File
+
+Before launching the application, you need to create a `.env` file in the root directory of the project. This file will hold important configuration settings, including default admin credentials and the Flask environment mode.
+
+Here’s a template for your `.env` file:
+
+```properties
+DEFAULT_ADMIN_NAME=xxxx
+DEFAULT_ADMIN_EMAIL=xxx@xxx.xxxx
+DEFAULT_ADMIN_PASSWORD=xxxxx
+
+FLASK_ENV=development
+```
+
+Replace the placeholder values (`xxxx`, `xxx@xxx.xxxx`, and `xxxxx`) with your desired admin username, email, and password.
+
+### Step 2: Build and Start the Application
+
+Once the `.env` file is created, you can launch the application using Docker. Open your terminal, navigate to the project directory (where `docker-compose.yml` is located), and run the following command:
+
+```shell
+docker-compose up --build
+```
+
+This command will:
+
+- Build the Docker images as defined in your `docker-compose.yml` file.
+- Start the application services.
+
+### Step 3: Access the Application
+
+After the containers have started, you can access the application in your web browser at:
+
+:eyes: http://localhost:5000
+
+### Step 4: Stopping the Application
+
+To stop the application, you can simply press `Ctrl + C` in the terminal where the application is running. Alternatively, you can run:
+
+```shell
+docker-compose down
+```
+
+This command will stop and remove the containers.
+
+### Conclusion
+
+You are now ready to use the application! If you encounter any issues, ensure that your `.env` file is correctly configured and that all required services are running.
+
+# 👊 Contribution
 
 
 
-## Sprint 3 : Fonctionnalités supplémentaires et optimisation
+Contributions are welcome! If you'd like to contribute, please follow these steps:
 
-| **ID** | **Tâche**                                             | **Description**                                                                 | **Estimation (jours)** | **Definition of Done (DoD)**                                                                                                                                                                  | **Statut**          |
-|--------|--------------------------------------------------------|---------------------------------------------------------------------------------|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------|
-| 9      | Notifications (optionnel)                              | Mettre en place un système de notifications pour les comportements exceptionnels.| 1 jour                 | - Les notifications sont envoyées par email ou SMS en fonction de comportements exceptionnels ou de rappels.<br> - Les parents peuvent activer/désactiver les notifications.<br> - Les notifications sont fiables et sans erreurs.<br> - Les tests unitaires sont passés pour la fonctionnalité. | À faire             |
-| 10     | Rapports personnalisés                                 | Générer des rapports sur les performances des enfants sur une période donnée.    | 2 jours                | - Les rapports hebdomadaires ou mensuels des performances des enfants peuvent être générés au format PDF ou Excel.<br> - Les rapports peuvent être consultés et envoyés par email.<br> - Le code est testé et fonctionne sans bugs.<br> - Les tests de génération de rapports sont réussis. | À faire             |
-| 11     | Design responsive                                      | Adapter l'interface pour un affichage optimal sur smartphone et tablette.        | 2 jours                | - L’interface utilisateur s’adapte parfaitement à tous les types d’écrans (ordinateurs, tablettes, smartphones).<br> - Le design est fluide et les composants réactifs fonctionnent correctement.<br> - Les tests sur différents appareils et navigateurs sont validés. | À faire             |
+1. **Fork the repository** to your own GitHub account.
+2. **Clone your fork** locally:
+
+```
+git clone https://github.com:<your username>/StarHeroes.git
+cd StarHeroes
+```
+
+​    
+
+**Create a new branch** for your feature or bug fix:
+
+```
+git checkout -b my-new-feature
+```
+
+​    
+
+**Make your changes** and commit them with a clear message:
+
+```
+git commit -m "Add new feature"
+```
+
+​    
+
+**Push your branch** to your fork:
+
+1. ```
+   git push origin my-new-feature
+   ```
+
+   ​    
+
+1. **Open a Pull Request** on the original repository and describe your changes.
+
+By following these steps, you can help improve the project for everyone!
